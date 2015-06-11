@@ -1,0 +1,11 @@
+<br />
+<div>
+
+  <% if(postsLen==40){ %>
+    <a title="下一页" class="btn pageShift" href="?p=<%= page+1 %>">下一页</a>
+  <% } %>
+  <% if(page-1){ %>
+    <a title="上一页" class="btn pageShift"  href="?p=<%= page-1 %>">上一页</a>
+  <% } %>
+
+</div>

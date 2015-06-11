@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap-responsive.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <link rel='stylesheet' href='/stylesheets/base.css' />
+    <!-- <link href="stylesheets/kissy/base.css" rel="stylesheet"/> -->
+    <link rel="stylesheet" href="stylesheets/kissy/demo.css" type="text/css" media="all"/>
+    <link href="stylesheets/kissy/custombutton.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/slicebox.css" />
+  </head>
+  <body>
+				
+  	<div class='contentWrap'>
+		  <div class="row-fluid globalHeader">
+		  	<div class="span12 gh">
+		  		<div class="container ">
+		  			<a class='logo' href='/'></a>
+		  			
+	  			  	<ul class="nav nav-tabs contentTabs" id="myTab">
+	  			  		  <% if (locals.user) { %>
+	  			  		       <li><a id="userHomeTag" href="#userhome"><%= user.name%></a></li>
+						  <% } %>
+						  <li class="floatRight"><a href="#messages"><!-- 发现 -->瀑布</a></li>
+						  <li class="floatRight"><a href="#profile">精选</a></li>
+						  <li class="active floatRight"><a href="#home">浏览</a></li>
+						  
+					 <!--  <li><a href="#settings"></a></li> -->
+					</ul>
+		  		</div>
+		  	</div>
+		  </div>
+		  <div class="container">
+		             <% if (locals.success) { %>
+			       <div class="alert alert-success">
+			          <%= success %>
+			       </div>
+			<% } %>
+			<% if (locals.error) { %>
+			          <div class="alert alert-error">
+			            <%= error %>
+			          </div>
+			 <% } %>
+		  	<div class="tab-content" >
+
+		  	 <div class="tab-pane" id="userhome">
+			  	<div class="row cont" >
+				  <div class="span8 publishSection" >
+				  	<div class="publishBt">
+				  		<ul>
+				  			<li class='btList'><a class='' href='/post'><div class='pLink1'></div></a></li>
+				  			<li class='btList'><a class='' href=''><div class='pLink2'></div></a></li>
+				  			<li class='btList'><a class='' href=''><div class='pLink3'></div></a></li>
+				  			<li class='btList' style="border-right:none;"><a class='' href=''><div class='pLink4'></div></a></li>
+				  		</ul>
+				  	</div>
+				  	<div class="myArticle"></div>
+				  </div>
+				  <div class="span4">
+				  	<div class="row">
+				  		<div class="span4 reBts reBts1">
+				  			<% if(locals.user){ %>
+				  			<a href='/post' class="loginBt btn btn-large pLeft bts" >发表</a>
+				  			<a href='/logout' class="regBt btn btn-info  btn-large pRight bts" >退出</a>
+				  			<%}else{%>
+				  			<a class="loginBt btn btn-large pLeft bts"  href='/login' >登录</a>
+				  			<a href='/reg' class="regBt btn btn-info  btn-large pRight bts" type="button">注册</a>
+				  			<% } %>
+				  		</div>
+				  		<div class="span4 reBts2 searchInput">
+					  		<form class="form-search" action='/search' method='GET'>
+								  <div class="input-append">
+								    <input type="text" class="span2 search-query" name='keyword' >
+								    <button type="submit" class="btn">搜索</button>
+								  </div>
+							</form>
+						</div>
+
+						<div class="span4 reBts">
+				  			<div class="span4 intro">
+				  				   <ul class="nav nav-tabs nav-stacked tagList">  
+				  				    	    <li><a title="存档" href="/archive">所有文章</a></li>
+				  				    	    <li><a title="标签" href="/tags">标签列表</a></li>
+									    
+								    </ul>
+
+				  			</div>
+				  		</div>
+				  		
+				  	</div>
+				  </div>
+				</div>
+			  </div>
+
+			  <div class="tab-pane active" id="home">
+			  	<div class="row cont" >
+				  <div class="span8 cont">
+
+				  	<% posts.forEach(function(post, index){ %>
+				  		
+					  	<div class="row arti cont">
+					  		<div class="span1 headP"><a class="avatar" href="/u/<%= post.name %>"><img src="<%= post.head %>" class="" /></a></div>
+					  		<div class="span7 article">
+					  			
+						  			<div class="row">
+						  				<div class="span7 artUser"><a  href="/u/<%= post.name %>"><%= post.name %></a></div>
+						  				<div class="span7 artTitle"><a href="/u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></div>
+						  				<!-- <div class="span7 artC"><img width='500' height='750' src='img/testC.jpg'></div>  -->
+						  				<div class="span7 artC"><%-post.post %></div>
+						  				<!-- <div class="span7 artC"><img width='500' height='333' src='img/testC1.jpg'></div>
+						  				<div class="span7 artC"><img width='250' height='167' src='img/testC2.jpg'><img width='250' height='167' src='img/testC2.jpg'></div> 
+
+						  				
+						  				<div class="span7 artC"><img width='500' height='750' src='http://bcs.duapp.com/yblog-resource/%E9%BE%99%E7%8C%AB?sign=MBO:F3bcb9891e10cafb28a690414df83915:oXWzK7uReX97HAa4aozYuvsndww%3D'></div>
+						  			
+						  				
+						  				<div class="span7 artC"><img width='500' height='750' src='img/testC4.jpg'></div> -->
+						  				<div class="span7 artC">
+						  					<div class="row">
+						  						<div class="span3">
+						  							  <% if(post.tags){post.tags.forEach(function(tag, index){ %>
+													    <% if(tag.tag){ %>
+													      <a class="btn btn-info btn-small tagBt" type="button"  href="/tags/<%= tag.tag %>">#<%= tag.tag %></a>
+													    <% } %>
+													  <% }) }%>
+						  						</div>
+						  						<div class="span2 tagR">
+						  							<!-- <a class="btn btn-link btn-small tagLing artcleBt"><i class="icon-heart"></i></a> -->
+						  							<a class="btn btn-link btn-small tagLing artcleBt">转载</a>
+						  							<a href="/u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>" class="btn btn-link btn-small tagLing artcleBt">回应(<%= post.comments.length %>)</a>
+						  							<a class="btn btn-link btn-small tagLing artcleBt">热度(<%= post.pv %>)</a>
+						  						</div>
+						  					</div>
+						  				</div>
+						  			</div>
+						  		
+					  		</div>
+					  	</div>
+				  	<% }) %>
+				  	<%- include paging %>
+				  </div>
+				  <div class="span4">
+				  	<div class="row">
+				  		<div class="span4 reBts reBts1">
+				  			<% if(locals.user){ %>
+				  			<a href='/post' class="loginBt btn btn-large pLeft bts" >发表</a>
+				  			<a href='/logout' class="regBt btn btn-info  btn-large pRight bts" >退出</a>
+				  			<%}else{%>
+				  			<a class="loginBt btn btn-large pLeft bts"  href='/login' >登录</a>
+				  			<a href='/reg' class="regBt btn btn-info  btn-large pRight bts" type="button">注册</a>
+				  			<% } %>
+				  		</div>
+				  		<div class="span4 reBts2 searchInput">
+					  		<form class="form-search" action='/search' method='GET'>
+								  <div class="input-append">
+								    <input type="text" class="span2 search-query" name='keyword' >
+								    <button type="submit" class="btn">搜索</button>
+								  </div>
+							</form>
+						</div>
+				  		<div class="span4 reBts">
+				  				<div class="span4 intro introT"><a class="btn  disabled btn-block">Yblog简介</a></div>
+				  				<div class="span3 intro">
+				  					<p>Yblog是基于node.js的轻博客系统</p>
+				  					<p>测试性产品，目前处于开发阶段</p>
+				  					<p>建议用IE9+、chrome、firefox等现代浏览器，以获得最佳效果</p>
+				  					<p>IOS,Android也可以访问哦</p>
+				  					<p>涉及的主要技术如下所示</p>
+				  					<a class="btn btn-link btn-small tagLing fr">by 狐狸</a>
+				  				</div>
+				  		</div>
+				  		<div class="span4 reBts">
+				  			<div class="span4 intro">
+				  				   <ul class="nav nav-tabs nav-stacked tagList">  
+				  				    	    <li><a target="_blank" href="http://www.w3school.com.cn/">HTML</a></li>
+				  				    	    <li><a target="_blank" href="http://www.w3school.com.cn/">CSS</a></li>
+									    <li><a target="_blank" href="http://www.w3school.com.cn/">javascript</a></li>
+									    <li><a target="_blank" href="http://nodejs.org/">Node.js</a></li>
+									    <li><a target="_blank" href="http://expressjs.com/">express</a></li>
+									    <li><a target="_blank" href="http://jquery.com/">jQuery</a></li>
+									    <li><a target="_blank" href="http://mongodb.github.io/node-mongodb-native/">MongoDB</a></li>
+									    <li><a target="_blank" href="http://twitter.github.io/bootstrap/">Bootstrap</a></li>
+									    <li><a target="_blank" href="http://www.ituring.com.cn/article/23">Markdown</a></li>
+									    <li><a target="_blank" href="http://en.gravatar.com/">gravatar</a></li>
+								    </ul>
+
+				  			</div>
+				  		</div>
+				  		
+				  			<div class="span4 reBts friLink">
+							<p>友情链接</p>
+				  			<ul class="clearFix">
+							  <li><a href="http://gb.cri.cn/"><img width="100" src='http://bcs.duapp.com/yblog-resource/crilogo.gif?sign=MBO:F3bcb9891e10cafb28a690414df83915:2xQjTN1GNtmF1idP01w%2FrIsCTRQ%3D' /><p>国际在线</p></a></li>
+							  <li class='rightLink'><a href="http://vscs.cri.cn"><img width="100" src='http://bcs.duapp.com/yblog-resource/vscs_logo.png?sign=MBO:F3bcb9891e10cafb28a690414df83915:sguXBRd3HOFLXwRRi1LjVKF6mSo%3D' /><p>南海之声</p></a></li>
+							</ul>
+				  			</div>
+				  		
+				  	</div>
+				  </div>
+				</div>
+			  </div>
+			  <div class="tab-pane" id="profile">
+
+
+
+			<div class="wrapper">
+
+				<ul id="sb-slider" class="sb-slider">
+					<li>
+						<a href="http://vscs.cri.cn" target="_blank"><img src="http://bcs.duapp.com/yblog-resource/scroll%2Fscroll7.jpg?sign=MBO:F3bcb9891e10cafb28a690414df83915:DwAFuxah%2FBDwwut88phfBGukNKM%3D" alt="image1"/></a>
+						<!-- <div class="sb-description">
+							<h3>标签：</h3>
+						</div> -->
+					</li>
+					<li>
+						<a href="http://vscs.cri.cn" target="_blank"><img src="http://bcs.duapp.com/yblog-resource/scroll%2Fscroll4.jpg?sign=MBO:F3bcb9891e10cafb28a690414df83915:yuxQqgDMJi%2FFfHNb%2F7Xv9k0Qsbw%3D" alt="image1"/></a>
+						<!-- <div class="sb-description">
+							<h3>标签：</h3>
+						</div> -->
+					</li>
+					<li>
+						<a href="http://vscs.cri.cn" target="_blank"><img src="http://bcs.duapp.com/yblog-resource/scroll%2Fscroll3.jpg?sign=MBO:F3bcb9891e10cafb28a690414df83915:8x1WoYJFwCI1eZE7DL6fqdew0kI%3D" alt="image2"/></a>
+						<!-- <div class="sb-description">
+							<h3>标签：</h3>
+						</div> -->
+					</li>
+					<li>
+						<a href="http://vscs.cri.cn" target="_blank"><img src="http://bcs.duapp.com/yblog-resource/scroll%2Fscroll6.JPEG?sign=MBO:F3bcb9891e10cafb28a690414df83915:ldpoTI3o7L18ivt3lTGnq0xADLI%3D" alt="image1"/></a>
+						<!-- <div class="sb-description">
+							<h3>标签：</h3>
+						</div> -->
+					</li>
+					
+					<li>
+						<a href="http://vscs.cri.cn" target="_blank"><img src="http://bcs.duapp.com/yblog-resource/scroll%2Fscroll2.jpg?sign=MBO:F3bcb9891e10cafb28a690414df83915:5HUAPVPoPoqWKB%2B3z%2B%2BqNUhSqqY%3D" alt="image1"/></a>
+						<!-- <div class="sb-description">
+							<h3>标签：</h3>
+						</div> -->
+					</li>
+					<li>
+						<a href="http://vscs.cri.cn" target="_blank"><img src="http://bcs.duapp.com/yblog-resource/scroll%2Fscroll1.jpg?sign=MBO:F3bcb9891e10cafb28a690414df83915:Lf0p95XI6eYmg5y5H2OzbBFgi60%3D" alt="image1"/></a>
+						<div class="sb-description">
+							<h3>标签：</h3>
+						</div>
+					</li>
+					<li>
+						<a href="http://vscs.cri.cn" target="_blank"><img src="http://bcs.duapp.com/yblog-resource/scroll%2Fscroll5.JPEG?sign=MBO:F3bcb9891e10cafb28a690414df83915:NRRETHGk7dcwR5ugosmERerJtto%3D" alt="image1"/></a>
+						<!-- <div class="sb-description">
+							<h3>标签：</h3>
+						</div> -->
+					</li>
+					
+				</ul>
+
+				<div id="shadow" class="shadow"></div>
+
+				<div id="nav-arrows" class="nav-arrows">
+					<a href="#">Next</a>
+					<a href="#">Previous</a>
+				</div>
+
+			</div><!-- /wrapper -->
+			
+
+			  <!-- 	  <div class="slider-wrapper theme-default">
+				            <div id="slider" class="nivoSlider">
+					                <img src="img/001.png" data-thumb="img/toystory.jpg" alt="" />
+					                <img src="img/002.png" data-thumb="img/up.jpg" alt="" />
+					                <img src="img/003.png" data-thumb="img/walle.jpg" alt="" data-transition="slideInLeft" />
+					                <img src="img/004.png" data-thumb="img/nemo.jpg" alt="" title="#htmlcaption" />
+				            </div>
+				            <div id="htmlcaption" class="nivo-html-caption">
+				                <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>. 
+				            </div>
+				        </div> -->
+
+			<!--   	<div class="winUiContent ">
+					  <div class="col">
+					  	<div class='size2 p01'><a href="###"><img src="/tmp/001.jpeg" /></a></div>
+					  	<div class='size1 p02'><a href="###"><img src="/tmp/3.jpeg" /></a>    </div>
+					  	<div class='size1 p04'><a href="###"><img src="/tmp/2.jpeg" /></a>    </div>
+					  	<div class='size3 p05'><a href="###"><img src="/tmp/01.jpeg" /></a>  </div>
+					  </div>
+					  <div class="col col0">
+					  	<div class='size3 p01'><a href="###"><img src="/tmp/02.jpeg" /></a></div>
+					  	<div class='size1 p03'><a href="###"><img src="/tmp/6.jpeg" /></a>   </div>
+					  	<div class='size1 p04'><a href="###"><img src="/tmp/1.jpeg" /></a>   </div>
+					  	<div class='size3 p05'><a href="###"><img src="/tmp/04.jpeg" /></a> </div>
+					  </div>
+					  <div class="col">
+					  	<div class='size3 p01'><a href="###"><img src="/tmp/03.jpeg" /></a></div>
+					  	<div class='size2 p03'>  </div>
+					  	<div class='size1 p04'><a href="###"><img src="/tmp/8.jpg" /></a>   </div>
+					  	<div class='size1 p06'><a href="###"><img src="/tmp/9.jpg" /></a> </div>
+					  </div>
+				</div> -->
+
+				<div class="winUiContent ">
+					  <div class="col">
+					  	<div class='size2 p01'></div>
+					  	<div class='size1 p02'>    </div>
+					  	<div class='size1 p04'>    </div>
+					  	<div class='size3 p05'>   </div>
+					  </div>
+					  <div class="col col0">
+					  	<div class='size3 p01'></div>
+					  	<div class='size1 p03'>   </div>
+					  	<div class='size1 p04'>   </div>
+					  	<div class='size3 p05'> </div>
+					  </div>
+					  <div class="col">
+					  	<div class='size3 p01'></div>
+					  	<div class='size2 p03'> </div>
+					  	<div class='size1 p04'>   </div>
+					  	<div class='size1 p06'> </div>
+					  </div>
+				</div>
+
+			  </div>
+			  <div class="tab-pane" id="messages">
+							 <div id="wrapper">
+						<!-- <div id="button_container"></div> -->
+
+						<div id="article">
+							<div id="ColumnContainer"></div>
+							<a id="BackToTop" href="#">返回顶部</a>
+							<div id="loadingPins"><img src="http://bcs.duapp.com/yblog-resource/T1Ar9xXg0JXXXXXXXX-16-16.gif?sign=MBO:F3bcb9891e10cafb28a690414df83915:dUCWhldEhkatN8Jy1CMIJtreNtg%3D" alt="Pin Loader Image"/><span>加载中&hellip;</span></div>
+						</div>
+					</div>
+					<script type="tpl" id="tpl">
+						<div class="pin ks-waterfall" data-id="{id}">
+							<a href="#" class="image">
+								<img height="{height}" style='height:{height}px'  alt="{title}" src="http://farm{farm}.static.flickr.com/{server}/{id}_{secret}_m.jpg"/>
+							</a>
+							<p class="description">{title}</p>
+							
+						</div>
+					</script>
+
+			 <!--  <div class="tab-pane" id="userhome">.4.</div> -->
+			</div>
+			 
+		   	
+		  </div>
+	</div>
+
+		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="myModalLabel">友情提示</h3>
+		  </div>
+		  <div class="modal-body">
+		    <p>yblog检测到您使用的浏览器内核低于IE8.0，建议您更换IE8+、Firefox、Chrome、Opera、Safari等现代浏览器，以获得更好的网上浏览体验！</p>
+		  </div>
+		  <div class="modal-footer">
+		    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+		    <!-- <button class="btn btn-primary">Save changes</button> -->
+		  </div>
+		</div>
+	<script type='text/javascript' src='javascripts/jquery-1.8.3.js'></script>
+	<script type='text/javascript' src='javascripts/bootstrap.js'></script>
+	<script  type='text/javascript' src="javascripts/build/seed.js"></script>	
+	<script  type='text/javascript' src="javascripts/kissy/base.js"></script>
+	 <script  type='text/javascript' src="javascripts/kissy/loader.js"></script>
+	 <script  type='text/javascript' src="javascripts/kissy/waterfall.js"></script>
+	 <script  type='text/javascript' src="javascripts/kissy/wf.js"></script>
+	 <script  type='text/javascript' src="javascripts/base.js"></script>
+	 <script type="text/javascript" src="javascripts/modernizr.custom.46884.js"></script>
+	<script type="text/javascript" src="javascripts/jquery.slicebox.js"></script>
+	<!-- // <script  type='text/javascript' src="http://a.tbcdn.cn/s/kissy/1.3.0/seed-min.js"></script> -->
+	<script>
+                (function (){
+
+
+                        var flag = false;
+                        var pFlag = false;
+                        Wflag  = function (value){
+                            flag = value;
+                        }
+                        Wflag.prototype.getF = function (){
+                            return flag;
+                        }
+                        Wflag.prototype.setF = function (value){
+                            flag = value;
+                        }
+
+                        Pflag  = function (value){
+                            pFlag = value;
+                        }
+                        Pflag.prototype.getP = function (){
+                            return pFlag;
+                        }
+                        Pflag.prototype.setP = function (value){
+                            pFlag = value;
+                        }
+                 })()
+
+                 var    wflag = new Wflag(false);
+                 var pflag = new Pflag(false);
+
+            	
+            	  $('#myTab a').click(function (e) {
+            	  e.preventDefault();
+            	  $(this).tab('show');
+
+                           if($('#messages').css('display')!='none'&&!wflag.getF()){
+                                iniWaterfall();
+                                wflag.setF(true);       
+                                // $('#slider').data('nivoslider').stop();       
+                                // pflag.setP(false);                   
+                           }
+                            if($('#profile').css('display')!='none'&&!pflag.getP()){
+      		     // $('#slider').nivoSlider({
+		      //       	 effect: 'random'
+		      // });
+                                // $('#slider').data('nivoslider').start();   
+
+
+				var Page = (function() {
+
+					var $navArrows = $( '#nav-arrows' ).hide(),
+						$shadow = $( '#shadow' ).hide(),
+						slicebox = $( '#sb-slider' ).slicebox( {
+							onReady : function() {
+
+								$navArrows.show();
+								$shadow.show();
+
+							},
+
+							orientation : 'r',
+							cuboidsRandom : true,
+							autoplay : true,
+							 interval: 5000,
+							disperseFactor : 30
+						} ),
+						
+						init = function() {
+
+							initEvents();
+							
+						},
+						initEvents = function() {
+
+							// add navigation events
+							$navArrows.children( ':first' ).on( 'click', function() {
+
+								slicebox.next();
+								return false;
+
+							} );
+
+							$navArrows.children( ':last' ).on( 'click', function() {
+								
+								slicebox.previous();
+								return false;
+
+							} );
+
+						};
+
+						return { init : init };
+
+				})();
+
+				Page.init();
+
+                                pflag.setP(true);                            
+                           }
+            	})
+	</script>
+  </body>
+</html>

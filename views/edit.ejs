@@ -1,0 +1,30 @@
+<%-include header %>
+<%console.log(post)%>
+<fieldset>
+    <legend><a href="/">主页</a>/修改</legend>
+    <div class='publish'>
+	<form method="post">
+	<!--
+	  标题：<br />
+	  <input type="text" class='articleContent' name="title"  placeholder="请在此输入标题，字数控制100之内" value="<%=post.title%>" /><br />
+	  标签：<br />
+	<input type="text" name="tag1" class='artTag' value="<%=post.tags[0].tag%>" /><input type="text" name="tag2" class='artTag'  value="<%=post.tags[1].tag%>"   /><input type="text" name="tag3" class='artTag'  value="<%=post.tags[2].tag%>"   /><br />
+	-->
+	  正文：<br />
+	  <textarea name="post" class='articleContent' ><%=post.post%></textarea><br />
+	  <input type="submit" class="btn btn-primary" value="更新" />
+	</form>
+</div>
+</fieldset>
+<script type='text/javascript' src='/javascripts/jquery-1.8.3.js'></script>
+<script type="text/javascript" src="/javascripts/base.js"></script>
+<script type="text/javascript">
+    $(function (){
+      $('#publish').on('click',function (){
+      var titleStr = $(".artTitle").val();
+        if(titleStr==''){$('#titleErr').text('请输入标题').css('color','#E64141');return false;}
+        else{$('#titleErr').text('').css('color','#E64141')}    
+      })
+    })
+</script>
+<%-include footer %>

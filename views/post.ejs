@@ -1,0 +1,28 @@
+<%-include header %>
+<fieldset>
+    <legend><a href="/">主页</a>/发表</legend>
+    <div class='publish'>
+	<form method="post">
+	  标题：<br />
+	  <input type="text" class='artTitle articleContent' name="title"  placeholder="请在此输入标题，字数控制100之内"  />
+	  <p id='titleErr' class="help-block"></p>
+	  标签：<br />
+	<input type="text" name="tag1" class='artTag' /><input type="text" name="tag2" class='artTag'  /><input type="text" name="tag3" class='artTag'  /><br />
+	  正文：<br />
+	  <textarea name="post" class='articleContent' ></textarea><br />
+	  <input type="submit" id="publish" class="btn btn-primary" value="发表" />
+	</form>
+</div>
+</fieldset>
+<script type='text/javascript' src='/javascripts/jquery-1.8.3.js'></script>
+<script type="text/javascript" src="/javascripts/base.js"></script>
+<script type="text/javascript">
+    $(function (){
+      $('#publish').on('click',function (){
+      var titleStr = $(".artTitle").val();
+        if(/^\s*$/.test(titleStr)){$('#titleErr').text('请输入标题').css('color','#E64141');return false;}
+        else{$('#titleErr').text('').css('color','#E64141')}    
+      })
+    })
+</script>
+<%-include footer %>

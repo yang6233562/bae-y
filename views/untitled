@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap-responsive.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <link rel='stylesheet' href='/stylesheets/base.css' />
+    <link rel="stylesheet" href="stylesheets/themes/default.css" type="text/css" media="screen" /> 
+    <link rel="stylesheet" href="stylesheets/nivo-slider.css" type="text/css" media="screen" />
+    <!-- <link href="stylesheets/kissy/base.css" rel="stylesheet"/> -->
+    <link rel="stylesheet" href="stylesheets/kissy/demo.css" type="text/css" media="all"/>
+    <link href="stylesheets/kissy/custombutton.css" rel="stylesheet"/>
+  </head>
+  <body>
+  	<h1>欢迎来到TEST页面</h1>
+  </body>
+</html>

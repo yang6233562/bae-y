@@ -1,0 +1,29 @@
+<fieldset>
+    <legend>回复</legend>
+    <div class='publish'>
+<br />
+<% post.comments.forEach(function(comment, index){ %>
+<div class="commentWrap">
+  <p class="clearFix commentTitle"><img src="<%= comment.head %>" class="l_head" /><a style="margin-left:1em;" href="<%= comment.website %>"><%= comment.name %></a><span class="info"> 回复于 <%= comment.time %></span></p>
+  <div class='commentContent'><%- comment.content %></div>
+</div>
+<% }) %>
+
+<form method="post" id="commentForm">
+<% if(locals.user){ %>
+  姓名：<input type="text" name="name" value="<%= locals.user.name %>" /><br />
+  邮箱：<input type="text" name="email" value="<%= locals.user.email %>" /><br />
+  网址：<input type="text" name="website" value="/u/<%= locals.user.name %>" /><br />
+<% } else { %>
+  姓名：<input type="text" name="name" value='匿名' /><br />
+  邮箱：<input type="text" name="email"  /><br />
+  网址：<input type="text" name="website" value="http://" /><br />
+<% } %>
+ <p id='titleErr' class="help-block"></p>
+  <textarea id="content" name="content" ></textarea><br />
+  <input type="submit" class="btn btn-primary" id="commentSubmitBt" value="留言" />
+</form>
+</div>
+</fieldset>
+<script type='text/javascript' src='/javascripts/jquery-1.8.3.js'></script>
+<script type="text/javascript" src="/javascripts/base.js"></script>

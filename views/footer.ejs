@@ -1,0 +1,66 @@
+     		</div>
+     		<div class='oprPanel'>
+     			  <div class="span4">
+				  	<div class="row">
+				  		<div class="span4 reBts reBts1">
+				  			<% if(locals.user){ %>
+				  			<a href='/post' class="loginBt btn btn-large pLeft bts" >发表</a>
+				  			<a href='/logout' class="regBt btn btn-info  btn-large pRight bts" >退出</a>
+				  			<%}else{%>
+				  			<a class="loginBt btn btn-large pLeft bts"  href='/login' >登录</a>
+				  			<a href='/reg' class="regBt btn btn-info  btn-large pRight bts" type="button">注册</a>
+				  			<% } %>
+				  		</div>
+				  		<div class="span4 reBts2 searchInput">
+					  		<form class="form-search" action='/search' method='GET'>
+								  <div class="input-append">
+								    <input type="text" class="span2 search-query" name='keyword' >
+								    <button type="submit" class="btn">搜索</button>
+								  </div>
+							</form>
+						</div>
+				  		<div class="span4 reBts">
+				  				<div class="span4 intro introT"><a class="btn  disabled btn-block">Yblog简介</a></div>
+				  				<div class="span3 intro">
+				  					<p>Yblog是基于node.js的轻博客系统</p>
+				  					<p>测试性产品，目前处于开发阶段</p>
+				  					<p>建议用IE9+、chrome、firefox等现代浏览器，以获得最佳效果</p>
+				  					<p>IOS,Android也可以访问哦</p>
+				  					<p>涉及的主要技术如下所示</p>
+				  					<a class="btn btn-link btn-small tagLing fr">by 狐狸</a>
+				  				</div>
+				  		</div>
+				  		<div class="span4 reBts">
+				  			<div class="span4 intro">
+				  				    <ul class="nav nav-tabs nav-stacked tagList">  
+				  				    	    <li><a target="_blank" href="http://www.w3school.com.cn/">HTML</a></li>
+				  				    	    <li><a target="_blank" href="http://www.w3school.com.cn/">CSS</a></li>
+									    <li><a target="_blank" href="http://www.w3school.com.cn/">javascript</a></li>
+									    <li><a target="_blank" href="http://nodejs.org/">Node.js</a></li>
+									    <li><a target="_blank" href="http://expressjs.com/">express</a></li>
+									    <li><a target="_blank" href="http://jquery.com/">jQuery</a></li>
+									    <li><a target="_blank" href="http://mongodb.github.io/node-mongodb-native/">MongoDB</a></li>
+									    <li><a target="_blank" href="http://twitter.github.io/bootstrap/">Bootstrap</a></li>
+									    <li><a target="_blank" href="http://www.ituring.com.cn/article/23">Markdown</a></li>
+									    <li><a target="_blank" href="http://en.gravatar.com/">gravatar</a></li>
+								    </ul>
+
+				  			</div>
+				  		</div>
+
+				  	<div class="span4 reBts friLink">
+							<p>友情链接</p>
+				  			<ul class="clearFix">
+							  <li><a href="http://gb.cri.cn/"><img width="100" src='http://bcs.duapp.com/yblog-resource/crilogo.gif?sign=MBO:F3bcb9891e10cafb28a690414df83915:2xQjTN1GNtmF1idP01w%2FrIsCTRQ%3D' /><p>国际在线</p></a></li>
+							  <li class='rightLink'><a href="http://vscs.cri.cn"><img width="100" src='http://bcs.duapp.com/yblog-resource/vscs_logo.png?sign=MBO:F3bcb9891e10cafb28a690414df83915:sguXBRd3HOFLXwRRi1LjVKF6mSo%3D' /><p>南海之声</p></a></li>
+							</ul>
+				  		</div>
+
+				  	</div>
+				  </div>
+     		</div>
+
+     	</div>
+     </div>
+  </body>
+</html>
